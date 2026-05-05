@@ -1,0 +1,199 @@
+# ⚡ smart-commit
+
+Generate high-quality git commit messages using AI based on your staged changes.
+
+---
+
+## 🚀 What is this?
+
+**smart-commit** is a lightweight Claude skill + script that:
+
+* Analyzes your **staged git changes**
+* Generates a **clean, conventional commit message**
+* Optionally commits automatically
+
+It helps you avoid vague commits like:
+
+```bash
+update stuff
+fix bugs
+changes
+```
+
+And replaces them with:
+
+```bash
+feat(auth): add JWT token refresh logic
+fix(api): handle null response in user endpoint
+refactor(db): simplify query builder logic
+```
+
+---
+
+## 🧠 How it works
+
+```text
+git diff --cached
+        ↓
+Claude (with smart-commit skill)
+        ↓
+Generates commit message
+        ↓
+git commit
+```
+
+> ⚠️ Important: Claude does NOT read your repo automatically.
+> The script pipes your staged diff into Claude.
+
+---
+
+## 📦 Requirements
+
+* Git
+* Claude CLI installed and authenticated
+* Bash (macOS/Linux) or PowerShell (Windows)
+
+---
+
+## ⚙️ Installation
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/fagom/smart-commit.git
+cd smart-commit
+```
+
+---
+
+### 2. Install the skill
+
+```bash
+mkdir -p ~/.claude/skills
+cp skill.md ~/.claude/skills/smart-commit.md
+```
+
+---
+
+### 3. Make script executable (Mac/Linux)
+
+```bash
+chmod +x scripts/ai-commit.sh
+```
+
+---
+
+## ▶️ Usage
+
+### 1. Stage your changes
+
+```bash
+git add .
+```
+
+---
+
+### 2. Run smart commit
+
+```bash
+./scripts/ai-commit.sh
+```
+
+---
+
+### 💻 PowerShell (Windows)
+
+```powershell
+.\scripts\ai-commit.ps1
+```
+
+---
+
+## 🧾 Example Output
+
+```bash
+feat(auth): add token refresh endpoint
+```
+
+---
+
+## 🧩 Commit Format
+
+Follows **Conventional Commits**:
+
+```
+<type>(<scope>): <summary>
+```
+
+### Types:
+
+* feat
+* fix
+* refactor
+* perf
+* chore
+* docs
+* test
+
+---
+
+## ⚠️ Behavior Notes
+
+* Only analyzes **staged changes**
+* Will fail if nothing is staged
+* Outputs **message only** (no extra text)
+* Does NOT auto-stage files
+
+---
+
+## 🔧 Customization
+
+You can modify `skill.md` to:
+
+* Enforce team commit conventions
+* Add scopes (auth, api, ui, etc.)
+* Control verbosity
+* Add commit body rules
+
+---
+
+## 🚀 Roadmap Ideas
+
+* [ ] Auto scope detection from folder structure
+* [ ] Multi-line commit messages
+* [ ] AI-powered code review + fix
+* [ ] One-command workflow: review → fix → commit
+
+---
+
+## 🤝 Contributing
+
+PRs and ideas welcome!
+
+---
+
+## 💡 Why this exists
+
+Good commit messages are:
+
+* hard to write
+* often skipped
+* critical for long-term maintainability
+
+This tool makes them:
+
+> fast, consistent, and automatic
+
+---
+
+## 🧠 Final Note
+
+This is a simple but powerful pattern:
+
+> **AI handles thinking → scripts handle execution**
+
+---
+
+## 📄 License
+
+MIT
