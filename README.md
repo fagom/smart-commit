@@ -53,13 +53,27 @@ git commit
 
 - Git
 - Claude CLI installed and authenticated
+- Node.js (for npx)
 - Bash (macOS/Linux) or PowerShell (Windows)
 
 ---
 
 ## ⚙️ Installation
 
-### 1. Clone the repo
+### ✅ Recommended: Install via `npx`
+
+```bash
+npx skills add fagom/smart-commit
+```
+
+This will:
+
+- Download the repo
+- Install `skill.md` into your local Claude skills directory
+
+---
+
+### 📥 Install scripts
 
 ```bash
 git clone https://github.com/fagom/smart-commit.git
@@ -68,19 +82,21 @@ cd smart-commit
 
 ---
 
-### 2. Install the skill
+### 🛠 Make script executable (Mac/Linux)
 
 ```bash
-mkdir -p ~/.claude/skills
-cp skill.md ~/.claude/skills/smart-commit.md
+chmod +x scripts/ai-commit.sh
 ```
 
 ---
 
-### 3. Make script executable (Mac/Linux)
+### 🧰 Manual skill install (fallback)
+
+If `npx` is not available:
 
 ```bash
-chmod +x scripts/ai-commit.sh
+mkdir -p ~/.claude/skills
+cp skill.md ~/.claude/skills/smart-commit.md
 ```
 
 ---
@@ -145,6 +161,7 @@ Follows **Conventional Commits**:
 - Will fail if nothing is staged
 - Outputs **message only** (no extra text)
 - Does NOT auto-stage files
+- Requires diff to be passed from script
 
 ---
 
