@@ -1,7 +1,7 @@
 ---
 name: smart-commit
 description: Commit staged files with a proper commit message.
-compatibility: Requires git and access to internet.
+compatibility: Requires git.
 metadata:
   author: fagom
   version: "1.0"

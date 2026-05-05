@@ -24,11 +24,22 @@ SAFE_DIFF=$(echo "$SAFE_DIFF" | head -n $MAX_DIFF_LINES)
 echo "🤖 Generating commit message..."
 
 PROMPT=$(cat <<EOF
-Generate a commit message from this diff.
+enerate a commit message based on the following git diff.
+
+Determine:
+- What changed (feature, fix, refactor, chore, etc.)
+- Scope (auth, api, ui, db, etc.)
+- Impact (bug fix, performance, cleanup)
+
+Format:
+<type>(<scope>): <short summary>
 
 Rules:
-- Format: <type>(scope): <summary>
-- Max 72 chars
+- Summary ≤ 72 characters
+- No trailing period
+- Be specific
+- Use lowercase type
+- Output ONLY the commit message
 - No explanation
 
 Diff:
