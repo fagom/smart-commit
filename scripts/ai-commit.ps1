@@ -1,4 +1,11 @@
-# Get staged diff
+# Stop on errors (equivalent to set -e)
+$ErrorActionPreference = "Stop"
+
+# --- CONFIG ---
+$MAX_DIFF_LINES = 200
+$REDACT_PATTERN = '(api[_-]?key|token|secret|password|authorization)=?[A-Za-z0-9_\-]+'
+
+# --- GET DIFF ---
 $DIFF = git diff --cached
 
 if ([string]::IsNullOrWhiteSpace($DIFF)) {
@@ -6,9 +13,16 @@ if ([string]::IsNullOrWhiteSpace($DIFF)) {
     exit 1
 }
 
+# --- REDACT SECRETS ---
+$SAFE_DIFF = [regex]::Replace($DIFF, $REDACT_PATTERN, "[REDACTED]", "IgnoreCase")
+
+# --- LIMIT SIZE ---
+$SAFE_DIFF = ($SAFE_DIFF -split "`n") | Select-Object -First $MAX_DIFF_LINES
+$SAFE_DIFF = $SAFE_DIFF -join "`n"
+
 Write-Host "🤖 Generating commit message..."
 
-# Multi-line prompt using here-string
+# --- PROMPT (here-string) ---
 $PROMPT = @"
 Generate a commit message based on the following git diff.
 
@@ -29,17 +43,16 @@ Rules:
 - No explanation
 
 Diff:
-$DIFF
+$SAFE_DIFF
 "@
 
-# Call Claude
+# --- CALL CLAUDE ---
 $MSG = $PROMPT | claude
 
-# Trim output (important)
+# --- CLEAN OUTPUT ---
 $MSG = $MSG -replace "`r", ""
 $MSG = $MSG.Trim()
 
-# Validate
 if ([string]::IsNullOrWhiteSpace($MSG)) {
     Write-Host "❌ Failed to generate commit message"
     exit 1
@@ -47,7 +60,7 @@ if ([string]::IsNullOrWhiteSpace($MSG)) {
 
 Write-Host "📦 $MSG"
 
-# Commit
+# --- COMMIT ---
 git commit -m "$MSG"
 
 Write-Host "✅ Committed"
