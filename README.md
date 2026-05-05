@@ -4,13 +4,15 @@ Generate high-quality git commit messages using AI based on your staged changes.
 
 ---
 
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 ## 🚀 What is this?
 
 **smart-commit** is a lightweight Claude skill + script that:
 
-* Analyzes your **staged git changes**
-* Generates a **clean, conventional commit message**
-* Optionally commits automatically
+- Analyzes your **staged git changes**
+- Generates a **clean, conventional commit message**
+- Optionally commits automatically
 
 It helps you avoid vague commits like:
 
@@ -49,9 +51,9 @@ git commit
 
 ## 📦 Requirements
 
-* Git
-* Claude CLI installed and authenticated
-* Bash (macOS/Linux) or PowerShell (Windows)
+- Git
+- Claude CLI installed and authenticated
+- Bash (macOS/Linux) or PowerShell (Windows)
 
 ---
 
@@ -127,22 +129,22 @@ Follows **Conventional Commits**:
 
 ### Types:
 
-* feat
-* fix
-* refactor
-* perf
-* chore
-* docs
-* test
+- feat
+- fix
+- refactor
+- perf
+- chore
+- docs
+- test
 
 ---
 
 ## ⚠️ Behavior Notes
 
-* Only analyzes **staged changes**
-* Will fail if nothing is staged
-* Outputs **message only** (no extra text)
-* Does NOT auto-stage files
+- Only analyzes **staged changes**
+- Will fail if nothing is staged
+- Outputs **message only** (no extra text)
+- Does NOT auto-stage files
 
 ---
 
@@ -150,19 +152,19 @@ Follows **Conventional Commits**:
 
 You can modify `skill.md` to:
 
-* Enforce team commit conventions
-* Add scopes (auth, api, ui, etc.)
-* Control verbosity
-* Add commit body rules
+- Enforce team commit conventions
+- Add scopes (auth, api, ui, etc.)
+- Control verbosity
+- Add commit body rules
 
 ---
 
 ## 🚀 Roadmap Ideas
 
-* [ ] Auto scope detection from folder structure
-* [ ] Multi-line commit messages
-* [ ] AI-powered code review + fix
-* [ ] One-command workflow: review → fix → commit
+- [ ] Auto scope detection from folder structure
+- [ ] Multi-line commit messages
+- [ ] AI-powered code review + fix
+- [ ] One-command workflow: review → fix → commit
 
 ---
 
@@ -176,9 +178,9 @@ PRs and ideas welcome!
 
 Good commit messages are:
 
-* hard to write
-* often skipped
-* critical for long-term maintainability
+- hard to write
+- often skipped
+- critical for long-term maintainability
 
 This tool makes them:
 
