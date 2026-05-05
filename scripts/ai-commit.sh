@@ -24,7 +24,7 @@ SAFE_DIFF=$(echo "$SAFE_DIFF" | head -n $MAX_DIFF_LINES)
 echo "🤖 Generating commit message..."
 
 PROMPT=$(cat <<EOF
-enerate a commit message based on the following git diff.
+Generate a commit message based on the following git diff.
 
 Determine:
 - What changed (feature, fix, refactor, chore, etc.)

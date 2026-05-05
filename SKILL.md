@@ -1,7 +1,7 @@
 ---
 name: smart-commit
 description: Commit staged files with a proper commit message.
-compatibility: Requires git.
+compatibility: Requires git and Claude CLI (installed and authenticated).
 metadata:
   author: fagom
   version: "1.0.1"
