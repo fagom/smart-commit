@@ -20,6 +20,12 @@ SAFE_DIFF=$(echo "$DIFF" | sed -E "s/($REDACT_PATTERNS)=?[A-Za-z0-9_\-]+/[REDACT
 # --- LIMIT SIZE ---
 SAFE_DIFF=$(echo "$SAFE_DIFF" | head -n $MAX_DIFF_LINES)
 
+# --- CONSENT CHECK ---
+if [ "$SMART_COMMIT_ENABLED" != "true" ]; then
+  echo "⚠️  Sending to Claude API is disabled by default for security."
+  echo "Enable with: export SMART_COMMIT_ENABLED=true"
+  exit 1
+fi
 
 echo "🤖 Generating commit message..."
 

@@ -14,6 +14,18 @@ Generate high-quality git commit messages using AI based on your staged changes.
 - Generates a **clean, conventional commit message**
 - Optionally commits automatically
 
+### ⚠️ SECURITY & PRIVACY
+
+**This tool sends your staged code to Claude API.** It is designed for open-source and non-sensitive codebases only.
+
+**Do NOT use if your code contains:**
+- Secrets, API keys, or authentication tokens
+- Proprietary business logic
+- Classified or sensitive information
+- Personally identifiable information (PII)
+
+The tool includes secret redaction for common patterns (API keys, tokens, passwords), but it **cannot catch all sensitive data**. Always review your staged changes before running this tool.
+
 It helps you avoid vague commits like:
 
 ```bash
@@ -97,6 +109,26 @@ If `npx` is not available:
 mkdir -p ~/.claude/skills
 cp skill.md ~/.claude/skills/smart-commit.md
 ```
+
+---
+
+## ⚙️ Enable the Skill (One-Time Setup)
+
+For security, smart-commit requires explicit opt-in before sending code to Claude API:
+
+### Bash/macOS/Linux
+
+```bash
+export SMART_COMMIT_ENABLED=true
+```
+
+### PowerShell/Windows
+
+```powershell
+$env:SMART_COMMIT_ENABLED = 'true'
+```
+
+**Note:** Without this, the script will refuse to run and show an error. This is intentional to prevent accidental data exposure.
 
 ---
 

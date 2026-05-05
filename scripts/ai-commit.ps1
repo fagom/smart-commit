@@ -20,6 +20,13 @@ $SAFE_DIFF = [regex]::Replace($DIFF, $REDACT_PATTERN, "[REDACTED]", "IgnoreCase"
 $SAFE_DIFF = ($SAFE_DIFF -split "`n") | Select-Object -First $MAX_DIFF_LINES
 $SAFE_DIFF = $SAFE_DIFF -join "`n"
 
+# --- CONSENT CHECK ---
+if ($env:SMART_COMMIT_ENABLED -ne "true") {
+    Write-Host "⚠️  Sending to Claude API is disabled by default for security."
+    Write-Host "Enable with: `$env:SMART_COMMIT_ENABLED = 'true'"
+    exit 1
+}
+
 Write-Host "🤖 Generating commit message..."
 
 # --- PROMPT (here-string) ---
