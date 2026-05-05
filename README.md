@@ -44,8 +44,7 @@ Generates commit message
 git commit
 ```
 
-> ⚠️ Important: Claude does NOT read your repo automatically.
-> The script pipes your staged diff into Claude.
+> ⚠️ Important: Claude does NOT read your repo automatically. The script pipes your staged diff into Claude.
 
 ---
 

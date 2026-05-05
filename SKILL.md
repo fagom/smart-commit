@@ -4,7 +4,7 @@ description: Commit staged files with a proper commit message.
 compatibility: Requires git.
 metadata:
   author: fagom
-  version: "1.0"
+  version: "1.0.1"
 ---
 
 ## Input Assumption
