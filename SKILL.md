@@ -49,7 +49,7 @@ This is required for security — the script will not send your code to Claude A
 
 ## Steps
 
-Run the appropriate script:
+Run the appropriate script from your project root:
 
-- **Bash**: `scripts/ai-commit.sh`
-- **PowerShell**: `scripts/ai-commit.ps1`
+- **Bash**: `./.claude/skills/smart-commit/scripts/ai-commit.sh`
+- **PowerShell**: `.\.claude\skills\smart-commit\scripts\ai-commit.ps1`

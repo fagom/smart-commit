@@ -1,4 +1,3 @@
-# Stop on errors (equivalent to set -e)
 $ErrorActionPreference = "Stop"
 
 # --- CONFIG ---
@@ -9,7 +8,7 @@ $REDACT_PATTERN = '(api[_-]?key|token|secret|password|authorization)=?[A-Za-z0-9
 $DIFF = git diff --cached
 
 if ([string]::IsNullOrWhiteSpace($DIFF)) {
-    Write-Host "❌ No staged files"
+    Write-Host "`u{274C} No staged files"
     exit 1
 }
 
@@ -22,14 +21,14 @@ $SAFE_DIFF = $SAFE_DIFF -join "`n"
 
 # --- CONSENT CHECK ---
 if ($env:SMART_COMMIT_ENABLED -ne "true") {
-    Write-Host "⚠️  Sending to Claude API is disabled by default for security."
+    Write-Host "`u{26A0}`u{FE0F} Sending to Claude API is disabled by default for security."
     Write-Host "Enable with: `$env:SMART_COMMIT_ENABLED = 'true'"
     exit 1
 }
 
-Write-Host "🤖 Generating commit message..."
+Write-Host "`u{1F916} Generating commit message..."
 
-# --- PROMPT (here-string) ---
+# --- PROMPT ---
 $PROMPT = @"
 Generate a commit message based on the following git diff.
 
@@ -61,13 +60,13 @@ $MSG = $MSG -replace "`r", ""
 $MSG = $MSG.Trim()
 
 if ([string]::IsNullOrWhiteSpace($MSG)) {
-    Write-Host "❌ Failed to generate commit message"
+    Write-Host "`u{274C} Failed to generate commit message"
     exit 1
 }
 
-Write-Host "📦 $MSG"
+Write-Host "`u{1F4E6} $MSG"
 
 # --- COMMIT ---
 git commit -m "$MSG"
 
-Write-Host "✅ Committed"
+Write-Host "`u{2705} Committed"
